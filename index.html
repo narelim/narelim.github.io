@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>knocking the moon</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<style>
+    /* 1. 기본 설정 */
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        background-color: #c4dbe0; /* 배경: 약간 차분한 소라색 */
+        font-family: 'Pretendard', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    /* 2. 윈도우 창 프레임 */
+    .window-container {
+        width: 95%;
+        max-width: 1000px;
+        height: 700px;
+        background-color: #fdfdfd;
+        border-radius: 16px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        display: flex;
+        overflow: hidden;
+        border: 1px solid #fff;
+    }
+
+    /* 3. 사이드바 (메뉴) */
+    .sidebar {
+        width: 220px;
+        background-color: #f0f2f5;
+        padding: 30px 20px;
+        border-right: 1px solid #e1e4e8;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .profile-mini {
+        text-align: center;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 2px dashed #d1d5db;
+    }
+    .profile-img {
+        width: 90px;
+        height: 90px;
+        background-color: #fff;
+        border-radius: 50%;
+        margin: 0 auto 10px;
+        background-image: url('https://via.placeholder.com/150'); /* 프사 */
+        background-size: cover;
+        border: 3px solid white;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    /* 메뉴 버튼 */
+    .nav-btn {
+        padding: 12px 15px;
+        border: none;
+        background: transparent;
+        text-align: left;
+        font-size: 1rem;
+        color: #555;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: 0.2s;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+    }
+    .nav-btn:hover { background-color: #e3e6ea; }
+    .nav-btn.active { 
+        background-color: #5c7cfa; /* 활성화 컬러 */
+        color: white; 
+        box-shadow: 0 4px 12px rgba(92, 124, 250, 0.2);
+    }
+    .nav-icon { margin-right: 10px; width: 20px; text-align: center; }
+
+    /* 4. 콘텐츠 영역 */
+    .content-area {
+        flex: 1;
+        padding: 40px;
+        background-color: #fff;
+        overflow-y: auto; /* 내용 많으면 스크롤 */
+    }
+
+    .tab-content { display: none; animation: fadeIn 0.4s; }
+    .tab-content.active { display: block; }
+    @keyframes fadeIn { from{opacity:0; transform:translateY(5px);} to{opacity:1; transform:translateY(0);} }
+
+    .section-title {
+        font-size: 1.8rem; font-weight: 800; margin-bottom: 25px; color: #333;
+        border-left: 5px solid #5c7cfa; padding-left: 15px;
+    }
+
+    /* 5. 플립 카드 그리드 (반응형) */
+    .grid-wrap {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 카드 크기 조절 */
+        gap: 20px;
+    }
+
+    /* === 플립 카드 CSS (가져옴) === */
+    .flip-card {
+        background-color: transparent;
+        width: 100%;
+        aspect-ratio: 2 / 3; /* 포토카드 비율 (2:3) */
+        perspective: 1000px;
+        cursor: pointer;
+    }
+
+    .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        border-radius: 15px;
+    }
+
+    .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+
+    .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    /* 앞면: 이미지 중심 */
+    .flip-card-front { background-color: #eee; }
+    .front-img { width: 100%; height: 100%; object-fit: cover; }
+    
+    /* 카드 앞면 이름표 (선택) */
+    .name-tag {
+        position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+        background: rgba(255,255,255,0.9); padding: 5px 15px;
+        border-radius: 20px; font-weight: bold; font-size: 0.8rem;
+        color: #333; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    /* 뒷면: 정보 중심 */
+    .flip-card-back {
+        background-color: #333;
+        color: white;
+        transform: rotateY(180deg);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    
+    .card-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 5px; }
+    .card-desc { font-size: 0.85rem; color: #ccc; line-height: 1.4; }
+
+    /* 모바일 대응 */
+    @media (max-width: 700px) {
+        .window-container { flex-direction: column; height: 100vh; border-radius: 0; width: 100%; }
+        .sidebar { width: 100%; height: auto; flex-direction: row; padding: 10px; overflow-x: auto; border-bottom: 1px solid #eee; border-right: none; align-items: center; }
+        .profile-mini { display: none; }
+        .nav-btn { font-size: 0.9rem; padding: 8px 12px; white-space: nowrap; }
+        .content-area { padding: 20px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="window-container">
+    <div class="sidebar">
+        <div class="profile-mini">
+            <div class="profile-img"></div>
+            <div style="font-weight:bold; color:#333;">재은</div>
+            <div style="font-size:0.8rem; color:#888;">@Santokki_ys</div>
+        </div>
+
+        <button class="nav-btn active" onclick="openTab(event, 'tab-main')"><span class="nav-icon">🏠</span> HOME</button>
+        <button class="nav-btn" onclick="openTab(event, 'tab-oc')"><span class="nav-icon">👤</span> 자캐 (OC)</button>
+        <button class="nav-btn" onclick="openTab(event, 'tab-genre')"><span class="nav-icon">🎮</span> 장르</button>
+        
+        <div style="flex:1;"></div> <button class="nav-btn" style="background:#fff0f6; color:#d6336c;" onclick="window.open('https://narelim.github.io/mag-ross-archive/')">
+            <span class="nav-icon">💍</span> 자컾 홈
+        </button>
+    </div>
+
+    <div class="content-area">
+
+        <div id="tab-main" class="tab-content active">
+            <div class="section-title">Welcome</div>
+            <p style="line-height:1.7; color:#555;">
+                안녕하세요! <b>나레</b>의 개인 아카이브입니다.<br>
+                왼쪽 메뉴를 눌러서 카드를 뒤집어보세요.<br><br>
+                📂 <b>OC:</b> 자캐 프로필 카드<br>
+                📂 <b>Genre:</b> 장르 정리<br>
+                📂 <b>Couple:</b> 좌측 하단 링크 클릭
+            </p>
+            </div>
+
+        <div id="tab-oc" class="tab-content">
+            <div class="section-title">Original Characters</div>
+            <div class="grid-wrap">
+                
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://via.placeholder.com/200x300/ffcfcf" class="front-img">
+                            <div class="name-tag">Adeline Ross</div>
+                        </div>
+                        <div class="flip-card-back" style="background-color: #ff9a9e;"> <div class="card-title">애들라인 로스</div>
+                            <p class="card-desc">뱀파이어<br>간판자캐</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://via.placeholder.com/200x300/cfffe2" class="front-img">
+                            <div class="name-tag">Vanessa White</div>
+                        </div>
+                        <div class="flip-card-back" style="background-color: #4facfe;">
+                            <div class="card-title">바네사 화이트</div>
+                            <p class="card-desc">청소년 히어로<br>신뉴</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://via.placeholder.com/200x300/eee" class="front-img">
+                            <div class="name-tag">Eve</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="card-title">이브</div>
+                            <p class="card-desc">얘 알면 8년 지인</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="tab-genre" class="tab-content">
+            <div class="section-title">Genre</div>
+            <div class="grid-wrap">
+                
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://via.placeholder.com/200x300/333" class="front-img">
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="card-title">2.5차원의 유혹 리리사</div>
+                            <p class="card-desc">가장 좋아하는 만화<br>성인만화</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, navbtn;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("active");
+        }
+        navbtn = document.getElementsByClassName("nav-btn");
+        for (i = 0; i < navbtn.length; i++) {
+            navbtn[i].classList.remove("active");
+        }
+        document.getElementById(tabName).classList.add("active");
+        if(evt) evt.currentTarget.classList.add("active");
+    }
+</script>
+
+</body>
+</html>
