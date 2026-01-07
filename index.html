@@ -175,6 +175,82 @@
         .nav-btn { font-size: 0.9rem; padding: 8px 12px; white-space: nowrap; }
         .content-area { padding: 20px; }
     }
+
+            /* =========================================
+       모바일 전용 스타일 (화면이 768px보다 작을 때)
+       : 플립 효과를 끄고, 이미지 아래에 설명이 바로 나옴
+       ========================================= */
+    @media (max-width: 768px) {
+        
+        /* 1. 3D 회전 효과 제거 */
+        .flip-card {
+            perspective: none; /* 원근감 제거 */
+            aspect-ratio: auto; /* 고정 비율 해제 */
+            height: auto; /* 내용만큼 늘어나게 */
+            margin-bottom: 20px;
+        }
+
+        .flip-card-inner {
+            transform: none !important; /* 회전 금지 */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* 그림자 살짝 */
+            display: flex;
+            flex-direction: column; /* 세로로 쌓기 */
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: none; /* 마우스 올려도 회전 X */
+        }
+
+        /* 2. 앞면(이미지)과 뒷면(설명)을 겹치지 않고 위아래로 배치 */
+        .flip-card-front, .flip-card-back {
+            position: relative; /* 겹침 해제 */
+            top: auto; left: auto;
+            backface-visibility: visible; /* 뒷면도 보이게 */
+            width: 100%;
+            height: auto;
+            border-radius: 0; /* 둥근 모서리 초기화 */
+        }
+
+        /* 3. 앞면 (이미지) 스타일 */
+        .flip-card-front {
+            height: 200px; /* 이미지 높이 적당히 고정 */
+            border-radius: 12px 12px 0 0; /* 위쪽만 둥글게 */
+        }
+        .name-tag {
+            display: none; /* 모바일에서는 이미지 위 이름표 숨김 (아래에 나오니까) */
+        }
+
+        /* 4. 뒷면 (설명) 스타일 */
+        .flip-card-back {
+            transform: none; /* 미리 뒤집어 놓은 것 해제 */
+            background-color: #fff !important; /* 배경을 흰색으로 변경 (깔끔하게) */
+            color: #333 !important; /* 글자색 검정으로 */
+            padding: 20px;
+            border-radius: 0 0 12px 12px; /* 아래쪽만 둥글게 */
+            border: 1px solid #eee; /* 테두리 살짝 */
+            border-top: none;
+        }
+
+        .card-title {
+            color: #000;
+            font-size: 1.1rem;
+        }
+        
+        .card-desc {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        /* 버튼 디자인 (모바일에 맞게 조정) */
+        .go-btn {
+            background-color: #333;
+            color: white;
+            width: 100%; /* 버튼 꽉 차게 */
+            display: block;
+            text-align: center;
+        }
+    }
+
 </style>
 </head>
 <body>
@@ -290,81 +366,6 @@
         document.getElementById(tabName).classList.add("active");
         if(evt) evt.currentTarget.classList.add("active");
     }
-        /* =========================================
-       모바일 전용 스타일 (화면이 768px보다 작을 때)
-       : 플립 효과를 끄고, 이미지 아래에 설명이 바로 나옴
-       ========================================= */
-    @media (max-width: 768px) {
-        
-        /* 1. 3D 회전 효과 제거 */
-        .flip-card {
-            perspective: none; /* 원근감 제거 */
-            aspect-ratio: auto; /* 고정 비율 해제 */
-            height: auto; /* 내용만큼 늘어나게 */
-            margin-bottom: 20px;
-        }
-
-        .flip-card-inner {
-            transform: none !important; /* 회전 금지 */
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* 그림자 살짝 */
-            display: flex;
-            flex-direction: column; /* 세로로 쌓기 */
-        }
-
-        .flip-card:hover .flip-card-inner {
-            transform: none; /* 마우스 올려도 회전 X */
-        }
-
-        /* 2. 앞면(이미지)과 뒷면(설명)을 겹치지 않고 위아래로 배치 */
-        .flip-card-front, .flip-card-back {
-            position: relative; /* 겹침 해제 */
-            top: auto; left: auto;
-            backface-visibility: visible; /* 뒷면도 보이게 */
-            width: 100%;
-            height: auto;
-            border-radius: 0; /* 둥근 모서리 초기화 */
-        }
-
-        /* 3. 앞면 (이미지) 스타일 */
-        .flip-card-front {
-            height: 200px; /* 이미지 높이 적당히 고정 */
-            border-radius: 12px 12px 0 0; /* 위쪽만 둥글게 */
-        }
-        .name-tag {
-            display: none; /* 모바일에서는 이미지 위 이름표 숨김 (아래에 나오니까) */
-        }
-
-        /* 4. 뒷면 (설명) 스타일 */
-        .flip-card-back {
-            transform: none; /* 미리 뒤집어 놓은 것 해제 */
-            background-color: #fff !important; /* 배경을 흰색으로 변경 (깔끔하게) */
-            color: #333 !important; /* 글자색 검정으로 */
-            padding: 20px;
-            border-radius: 0 0 12px 12px; /* 아래쪽만 둥글게 */
-            border: 1px solid #eee; /* 테두리 살짝 */
-            border-top: none;
-        }
-
-        .card-title {
-            color: #000;
-            font-size: 1.1rem;
-        }
-        
-        .card-desc {
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        /* 버튼 디자인 (모바일에 맞게 조정) */
-        .go-btn {
-            background-color: #333;
-            color: white;
-            width: 100%; /* 버튼 꽉 차게 */
-            display: block;
-            text-align: center;
-        }
-    }
-
 </script>
 
 </body>
