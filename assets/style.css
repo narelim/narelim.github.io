@@ -39,6 +39,7 @@
         margin-bottom: 30px;
         padding-bottom: 20px;
         border-bottom: 2px dashed #d1d5db;
+     object-fit: scale-down;
     }
     .profile-img {
         width: 90px;
