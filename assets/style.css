@@ -41,18 +41,18 @@
         border-bottom: 2px dashed #d1d5db;
     }
     
-.profile-img {
-    width: 90px;        /* 너비 고정 */
-    height: 90px;       /* 높이 고정 */
-    border-radius: 50%; /* 동그라미 */
-    
-    /* ✨ 핵심 코드 추가 ✨ */
-    object-fit: cover;  /* 이미지가 찌그러지지 않고 꽉 차게 */
-    object-position: center; /* 이미지 중앙을 보여줌 */
-    
-    /* 기타 꾸밈 효과 (선택) */
-    border: 3px solid white;
-}
+    .profile-img {
+        width: 90px;        /* 너비 고정 */
+        height: 90px;       /* 높이 고정 */
+        border-radius: 50%; /* 동그라미 */
+        
+        /* ✨ 핵심 코드 추가 ✨ */
+        object-fit: cover;  /* 이미지가 찌그러지지 않고 꽉 차게 */
+        object-position: center; /* 이미지 중앙을 보여줌 */
+        
+        /* 기타 꾸밈 효과 (선택) */
+        border: 3px solid white;
+    }
 
 
     /* 메뉴 버튼 */
