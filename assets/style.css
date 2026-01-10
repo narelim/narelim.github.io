@@ -1,38 +1,66 @@
  /* 1. 기본 설정 */
     * { box-sizing: border-box; }
     body {
-        margin: 0;
-        background-color: #c4dbe0; /* 배경: 약간 차분한 소라색 */
-        font-family: 'Pretendard', sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
+    margin: 0;
+    /* 몽환적인 그라데이션 배경 */
+    background: radial-gradient(at 0% 0%, #f6f0fd 0px, transparent 50%),
+                radial-gradient(at 90% 0%, #e0c3fc 0px, transparent 50%),
+                radial-gradient(at 10% 90%, #dbe4ff 0px, transparent 50%),
+                radial-gradient(at 90% 90%, #ffdee9 0px, transparent 50%),
+                #f3f4f6; /* 기본 바탕색 */
+    background-size: 200% 200%; /* 움직이는 효과를 위해 크게 */
+    animation: gradientMove 15s ease infinite; /* 배경이 살살 움직임 */
+    
+    font-family: 'Pretendard', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+        }
+
+    /* 배경이 천천히 움직이는 애니메이션 */
+    @keyframes gradientMove {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
     }
+
 
     /* 2. 윈도우 창 프레임 */
     .window-container {
         width: 95%;
         max-width: 1000px;
         height: 700px;
-        background-color: #fdfdfd;
-        border-radius: 16px;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        
+        /* 글래스모피즘 효과 핵심 */
+        background-color: rgba(255, 255, 255, 0.65); /* 반투명 흰색 */
+        backdrop-filter: blur(20px); /* 뒤쪽이 흐릿하게 비침 */
+        -webkit-backdrop-filter: blur(20px); /* 사파리 호환용 */
+        
+        border-radius: 24px; /* 더 둥글게 */
+        border: 1px solid rgba(255, 255, 255, 0.8); /* 얇고 하얀 테두리 */
+        box-shadow: 
+            0 20px 50px rgba(0,0,0,0.05), /* 부드러운 그림자 */
+            inset 0 0 0 1px rgba(255,255,255,0.5); /* 안쪽 광택 */
+            
         display: flex;
         overflow: hidden;
-        border: 1px solid #fff;
     }
 
-    /* 3. 사이드바 (메뉴) */
+
     .sidebar {
-        width: 220px;
-        background-color: #f0f2f5;
-        padding: 30px 20px;
-        border-right: 1px solid #e1e4e8;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
+    width: 220px;
+    background-color: transparent; /* 배경 투명하게 */
+    padding: 30px 20px;
+    border-right: 1px solid rgba(255, 255, 255, 0.4); /* 연한 구분선 */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+
 
     .profile-mini {
         text-align: center;
@@ -56,27 +84,42 @@
 
 
     /* 메뉴 버튼 */
+/* 메뉴 버튼 디자인 */
     .nav-btn {
-        padding: 12px 15px;
-        border: none;
-        background: transparent;
+        padding: 12px 20px;
+        border: 1px solid transparent; /* 테두리 공간 확보 */
+        background: rgba(255, 255, 255, 0.3); /* 연한 배경 */
         text-align: left;
-        font-size: 1rem;
+        font-size: 0.95rem;
         color: #555;
         cursor: pointer;
-        border-radius: 8px;
-        transition: 0.2s;
+        border-radius: 50px; /* 완전 둥근 알약 모양 */
+        transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         font-weight: 600;
         display: flex;
         align-items: center;
+        justify-content: space-between; /* 아이콘과 텍스트 양끝 정렬 */
     }
-    .nav-btn:hover { background-color: #e3e6ea; }
+    
+    .nav-btn:hover {
+        background-color: rgba(255, 255, 255, 0.8);
+        transform: translateX(5px); /* 살짝 오른쪽으로 이동 */
+    }
+    
+    /* 활성화된 버튼 (Modern Y2K 포인트!) */
     .nav-btn.active { 
-        background-color: #5c7cfa; /* 활성화 컬러 */
+        background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); /* 그라데이션 버튼 */
         color: white; 
-        box-shadow: 0 4px 12px rgba(92, 124, 250, 0.2);
+        border: 1px solid rgba(255,255,255,0.5);
+        box-shadow: 0 4px 15px rgba(161, 140, 209, 0.4);
     }
-    .nav-icon { margin-right: 10px; width: 20px; text-align: center; }
+    
+    /* 버튼 안에 별 아이콘 넣기 (가상 요소 사용) */
+    .nav-btn.active::after {
+        content: "✦"; /* 유니코드 별 */
+        font-size: 1.2rem;
+        color: white;
+    }
 
     /* 4. 콘텐츠 영역 */
     .content-area {
@@ -244,4 +287,33 @@
             display: block;
             text-align: center;
         }
+        
+            /* 1. 4각 반짝이 별 (CSS clip-path로 그림) */
+    .sparkle-star {
+        width: 30px;
+        height: 30px;
+        background-color: #333;
+        /* 4각 별 모양으로 잘라내는 마법의 코드 */
+        clip-path: polygon(50% 0%, 61% 35%, 100% 50%, 61% 65%, 50% 100%, 39% 65%, 0% 50%, 39% 35%);
+        display: inline-block;
+    }
+    
+    /* 2. 얇은 행성 궤도 같은 타원 */
+    .orbit-circle {
+        width: 100px;
+        height: 40px;
+        border: 1px solid #333;
+        border-radius: 50%; /* 타원 만들기 */
+        transform: rotate(-15deg); /* 살짝 기울기 */
+        position: relative;
+    }
+    
+    /* 3. 텍스트에 그라데이션 입히기 (제목용) */
+    .gradient-text {
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 900;
+    }
+
     }
