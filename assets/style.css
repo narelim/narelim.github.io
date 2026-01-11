@@ -49,8 +49,8 @@ body::before {
     
     /* 아주 연한 모눈선 그리기 */
     /* (선택) 모눈 대신 노이즈 질감 넣기 */
-background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-opacity: 0.4;
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    opacity: 0.1;
 
     
     pointer-events: none; /* 마우스 클릭 방해 안 하게 */
@@ -323,6 +323,8 @@ opacity: 0.4;
         border: none;
         margin: 0 !important;
         box-shadow: none; /* 그림자도 제거해서 평평하게 */
+        background-color: transparent !important; 
+        backdrop-filter: none; /* 모바일 성능 위해 블러 끄기 
     }
 
     .sidebar {
@@ -380,7 +382,7 @@ opacity: 0.4;
         padding: 20px; 
         overflow: visible; 
         height: auto; 
-        background-color: #fff; /* 콘텐츠 영역 배경색 */
+        background-color: rgba(255, 255, 255, 0.4); 
     }
 }
 
