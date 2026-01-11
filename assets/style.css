@@ -214,7 +214,7 @@ body::before {
 /* (옵션) 그려주신 구름 모양 박스 테두리 */
 .content-area {
     /* 기존 설정 유지하되, 테두리만 변경 */
-    border-radius: 20px; /* 기본 둥근 모서리 */
+    border-radius: 0 20px 20px 0; /* 기본 둥근 모서리 */
     /* 만약 스케치처럼 울퉁불퉁하게 하고 싶다면 아래 주석 해제 */
     /* border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; */
     font-family: 'SchoolSafeUniverse';
@@ -261,7 +261,7 @@ body::before {
 .banner-icon {
     width: 60px;      /* 아이콘 크기 적당하게 */
     height: auto;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 /* 2. 프로필 (왕 크니까 왕 귀엽다) */
@@ -290,7 +290,7 @@ body::before {
     font-family: 'NixgonFont', sans-serif;
     display: grid;
     grid-template-columns: 1fr 1fr; /* 1:1 비율로 2칸 나눔 */
-    gap: 12px;             /* 버튼 사이 간격 */
+    gap: 10px;             /* 버튼 사이 간격 */
     width: 100%;
 }
 
