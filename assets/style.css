@@ -12,31 +12,50 @@
 
 /* 1. 기본 설정 */
     * { box-sizing: border-box; }
-    body {
+    /* =========================================
+   🎀 배경 꾸미기: 그라데이션 + 모눈 패턴
+   ========================================= */
+body {
     margin: 0;
-    /* 몽환적인 그라데이션 배경 */
-    background: radial-gradient(at 0% 0%, #fdfbf7 0px, transparent 50%),
-                radial-gradient(at 90% 0%, #f2e9e4 0px, transparent 50%),
-                radial-gradient(at 10% 90%, #ffb7c5 0px, transparent 50%),
-                radial-gradient(at 90% 90%, #fff0f3 0px, transparent 50%),
-                #frfbf7; /* 기본 바탕색 */
-    background-size: 200% 200%; /* 움직이는 효과를 위해 크게 */
-    animation: gradientMove 15s ease infinite; /* 배경이 살살 움직임 */
-    
     font-family: 'Pretendard', sans-serif;
+    color: var(--text-main);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    color: #5d4037;
-        }
+    
+    /* 1. 움직이는 그라데이션 배경 설정 */
+    /* 색상: 크림 -> 연한 핑크 -> 흰색 -> 연한 라벤더 */
+    background: linear-gradient(-45deg, #fdfbf7, #ffe5ec, #fff0f3, #e2e2f0);
+    background-size: 400% 400%; /* 배경을 크게 늘려서 */
+    animation: gradientBG 15s ease infinite; /* 천천히 움직이게 함 */
+    
+    position: relative; /* 패턴을 위에 얹기 위한 기준점 */
+}
 
-    /* 배경이 천천히 움직이는 애니메이션 */
-    @keyframes gradientMove {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
+/* 2. 그라데이션 움직임 정의 (키프레임) */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 3. ✨ 꾸밈 요소: 모눈종이(Grid) 패턴 얹기 ✨ */
+body::before {
+    content: "";
+    position: fixed; /* 화면에 고정 */
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    
+    /* 아주 연한 모눈선 그리기 */
+    /* (선택) 모눈 대신 노이즈 질감 넣기 */
+background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+opacity: 0.4;
+
+    
+    pointer-events: none; /* 마우스 클릭 방해 안 하게 */
+    z-index: -1; /* 내용보다는 뒤에, 배경보다는 앞에 */
+}
 
 
     /* 2. 윈도우 창 프레임 */
