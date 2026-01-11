@@ -247,6 +247,10 @@ body::before {
     justify-content: center;
 }
 
+.card-title {
+    color: #ffb7c5;
+    }
+
 .couple-banner:hover {
     transform: scale(1.02); /* 살짝 커짐 */
     color: #ffcad4; /* 마우스 올리면 더 연한 핑크 */
