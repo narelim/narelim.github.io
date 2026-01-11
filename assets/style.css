@@ -47,10 +47,11 @@
     font-display: swap;
 }
 
-
-@font-face {
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Meddon&display=swap" rel="stylesheet">
+.Meddon-regular {
   font-family: 'Meddon', cursive;
-  src: url('https://fonts.googleapis.com/css2?family=Meddon&display=swap');
   font-weight: 400;
   font-style: normal;
 }
