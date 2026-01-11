@@ -2,8 +2,8 @@
    🎀 발레코어 테마 (Balletcore Theme)
    ========================================= */
 :root {
-    --bg-color: #fdfbf7;       /* 따뜻한 크림색 배경 */
-    --window-bg: #ffffff;      /* 윈도우 창은 깨끗한 흰색 */
+    /*--bg-color: #fdfbf7;*/       /* 따뜻한 크림색 배경 */
+    /*--window-bg: #ffffff;*/      /* 윈도우 창은 깨끗한 흰색 */
     --sidebar-border: #f2e9e4; /* 연한 베이지 테두리 */
     --text-main: #5d4037;      /* 부드러운 코코아색 글씨 (검정X) */
     --point-pink: #ffb7c5;     /* 발레 슈즈 같은 핑크 */
@@ -84,7 +84,7 @@ opacity: 0.4;
 .sidebar {
     width: 220px;          /* 폭을 좁혀서 아이콘 위주로 */
     background-color: transparent; /* 배경 투명하게! (회색 제거) */
-    border-right: 2px dashed #d1d5db; /* 점선 테두리로 다꾸 느낌 */
+    border-right: 2px dashed #ffb7c5; /* 점선 테두리로 다꾸 느낌 */
     display: flex;
     flex-direction: column;
     align-items: center;   /* 가운데 정렬 */
