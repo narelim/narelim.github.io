@@ -77,8 +77,9 @@
     width: 100%;           /* 그리드 칸에 꽉 차게 */
     aspect-ratio: 1/1;     /* 정사각형 비율 유지 */
     height: auto;          /* 높이 자동 */
-    background: white;     /* 흰색 배경 */
-    border: 1px solid var(--sidebar-border); /* 연한 테두리 */
+    background: transparent; /* 👈 배경 투명하게! (흰색 제거) */
+    border: none;            /* 👈 테두리 제거! */
+    box-shadow: none;        /* 👈 그림자 제거! */
     border-radius: 18px;
     color: var(--text-main);
     display: flex;
@@ -88,21 +89,17 @@
     cursor: pointer;
     transition: 0.3s;
     perspective: 1000px;   /* 3D 회전 준비 */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
 }
 
 .nav-btn:hover {
-    background-color: var(--hover-bg); /* 연한 핑크 배경 */
-    border-color: var(--point-pink);   /* 진한 핑크 테두리 */
     transform: translateY(-3px);       /* 살짝 떠오름 */
 }
 
 /* 활성화 상태 */
 .nav-btn.active {
-    background-color: var(--point-pink);
-    color: white;
-    border-color: var(--point-pink);
-    box-shadow: 0 4px 12px rgba(255, 183, 197, 0.4);
+    color: var(--point-pink); /* 아이콘 색만 핑크로 */
+    font-weight: bold;
+    background: transparent; /* 배경색 안 생기게 */
 }
 
 /* 3. ✨ 아이콘 스타일 (크게! 빙글빙글!) ✨ */
@@ -140,6 +137,34 @@
     /* 찌그러진 원 모양 만들기 */
     border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
     box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+}
+
+/* =========================================
+   2. 자컾 배너 스타일 (새로 추가!)
+   ========================================= */
+.couple-banner {
+    width: 100%;
+    margin-top: 20px;       /* 위쪽 메뉴랑 간격 띄우기 */
+    padding: 15px;
+    
+    /* 배너 디자인 (발레코어 핑크 리본 느낌) */
+    background-color: var(--point-pink); /* 핑크색 배경 */
+    color: white;                        /* 흰색 글씨 */
+    border: none;
+    border-radius: 15px;                 /* 둥근 모서리 */
+    
+    font-family: 'Pretendard', serif;    /* 분위기 있는 폰트 */
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(255, 183, 197, 0.4); /* 몽환적인 그림자 */
+}
+
+.couple-banner:hover {
+    transform: scale(1.02); /* 살짝 커짐 */
+    background-color: #ffcad4; /* 마우스 올리면 더 연한 핑크 */
 }
 
 
