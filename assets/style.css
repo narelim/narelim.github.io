@@ -324,7 +324,7 @@ body::before {
         margin: 0 !important;
         box-shadow: none; /* 그림자도 제거해서 평평하게 */
         background-color: transparent !important; 
-        backdrop-filter: none; /* 모바일 성능 위해 블러 끄기 
+        backdrop-filter: none; /* 모바일 성능 위해 블러 끄기 */
     }
 
     .sidebar {
@@ -484,7 +484,7 @@ body::before {
     
     /* 3. 텍스트에 그라데이션 입히기 (제목용) */
     .gradient-text {
-        background: linear-gradient(90deg, #667eea, #764ba2);
+        background: linear-gradient(90deg, #667eea, #ffb7e5);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-weight: 900;
