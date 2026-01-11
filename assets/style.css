@@ -374,7 +374,20 @@ body::before {
     }
     
     .card-title { font-family: 'ImHyeMin'; font-size: 1.2rem; font-weight: bold; margin-bottom: 5px; }
-    .card-desc { font-family: 'ImHyeMin'; font-size: 0.85rem; color: #ccc; line-height: 1.4; }
+    .card-desc { font-family: 'ImHyeMin'; font-size: 0.85rem; line-height: 1.4; }
+    /* 카드 뒷면 글씨 꾸미기 */
+.flip-card-back .card-title,
+.flip-card-back .card-desc {
+    /* 1. 글씨 색상: 아주 진한 회갈색 (완전 검정보다 자연스러움) */
+    color: #3e2723; 
+    
+    /* 2. ✨ 핵심 마법: 곱하기(Multiply) 모드 ✨ */
+    mix-blend-mode: multiply;
+    
+    /* 3. 투명도 조절: 배경이 살짝 비치게 해서 더 자연스럽게 */
+    opacity: 0.8; 
+}
+
 
     /* 모바일 대응 */
 /* 👇 기존 700px를 920px 정도로 늘려서 가로 모드도 포함시킵니다 */
