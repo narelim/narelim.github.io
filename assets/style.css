@@ -256,6 +256,12 @@ body::before {
     color: #ffcad4; /* 마우스 올리면 더 연한 핑크 */
 }
 
+/* 자컾 배너 안의 아이콘 설정 */
+.banner-icon {
+    width: 40px;      /* 아이콘 크기 적당하게 */
+    height: auto;
+    margin-right: 10px; /* 글씨랑 간격 */
+}
 
 /* 2. 프로필 (왕 크니까 왕 귀엽다) */
 .profile-mini {
