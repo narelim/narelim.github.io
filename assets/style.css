@@ -246,7 +246,7 @@ body::before {
     border: none;
     border-radius: 15px;                 /* 둥근 모서리 */
     
-    font-family: 'Meddon-regular', cursive;    /* 분위기 있는 폰트 */
+    font-family: 'Meddon', cursive;    /* 분위기 있는 폰트 */
     font-weight: 400;
     cursor: pointer;
     transition: 0.3s;
