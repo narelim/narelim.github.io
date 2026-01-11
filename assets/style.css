@@ -206,13 +206,60 @@
     .card-desc { font-size: 0.85rem; color: #ccc; line-height: 1.4; }
 
     /* 모바일 대응 */
-    @media (max-width: 700px) {
-        .window-container { flex-direction: column; height: 100vh; border-radius: 0; width: 100%; }
-        .sidebar { width: 100%; height: auto; flex-direction: row; padding: 10px; overflow-x: auto; border-bottom: 1px solid #eee; border-right: none; align-items: center; }
-        .profile-mini { display: none; }
-        .nav-btn { font-size: 0.9rem; padding: 8px 12px; white-space: nowrap; }
-        .content-area { padding: 20px; }
+/* 👇 기존 700px를 920px 정도로 늘려서 가로 모드도 포함시킵니다 */
+@media (max-width: 920px) {
+    
+    /* 1. 전체 페이지 여백 제거 (가장 중요!) */
+    body {
+        padding: 0 !important; /* 강제로 여백 없앰 */
+        margin: 0 !important;
+        align-items: flex-start; /* 중앙 정렬 해제하고 위부터 채우기 */
     }
+
+    /* 2. 메인 컨테이너 꽉 채우기 */
+    .window-container { 
+        flex-direction: column; 
+        width: 100% !important;   /* 너비 100% */
+        max-width: 100% !important; 
+        height: auto; 
+        min-height: 100vh;        /* 높이도 화면 꽉 차게 */
+        border-radius: 0 !important; /* 둥근 모서리 제거 */
+        border: none;
+        margin: 0 !important;
+        box-shadow: none; /* 그림자도 제거해서 평평하게 */
+    }
+
+    /* 3. 사이드바(메뉴) 설정 */
+    .sidebar { 
+        width: 100%; 
+        height: auto; 
+        flex-direction: row; 
+        padding: 10px 15px; /* 좌우 여백 살짝 줌 */
+        overflow-x: auto; 
+        border-bottom: 1px solid #eee; 
+        border-right: none; 
+        align-items: center; 
+        flex-shrink: 0;
+        background-color: #fff; /* 배경색 확실하게 지정 */
+    }
+
+    .profile-mini { display: none; }
+    
+    .nav-btn { 
+        font-size: 0.9rem; 
+        padding: 8px 12px; 
+        white-space: nowrap; 
+        margin-right: 5px; 
+    }
+    
+    .content-area { 
+        padding: 20px; 
+        overflow: visible; 
+        height: auto; 
+        background-color: #fff; /* 콘텐츠 영역 배경색 */
+    }
+}
+
 
             /* =========================================
        모바일 전용 스타일 (화면이 768px보다 작을 때)
