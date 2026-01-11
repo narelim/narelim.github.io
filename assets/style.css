@@ -228,23 +228,23 @@ body::before {
     padding: 15px;
     
     /* 배너 디자인 (발레코어 핑크 리본 느낌) */
-    background-color: var(--point-pink); /* 핑크색 배경 */
-    color: white;                        /* 흰색 글씨 */
+    background-color: transparent; /* 핑크색 배경 */
+    color: var(--point-pink);                        /* 흰색 글씨 */
     border: none;
     border-radius: 15px;                 /* 둥근 모서리 */
     
-    font-family: "Meddon", cursive    /* 분위기 있는 폰트 */
+    font-family: "Meddon", cursive;    /* 분위기 있는 폰트 */
+    font-weight: 400;
     cursor: pointer;
     transition: 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 10px rgba(255, 183, 197, 0.4); /* 몽환적인 그림자 */
 }
 
 .couple-banner:hover {
     transform: scale(1.02); /* 살짝 커짐 */
-    background-color: #ffcad4; /* 마우스 올리면 더 연한 핑크 */
+    color: #ffcad4; /* 마우스 올리면 더 연한 핑크 */
 }
 
 
