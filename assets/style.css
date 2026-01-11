@@ -546,7 +546,7 @@ body::before {
     
     /* 3. 텍스트에 그라데이션 입히기 (제목용) */
     .gradient-text {
-        background: linear-gradient(90deg, #667eea, #ffb7e5);
+        background: linear-gradient(90deg, #f2e9e4, #ffb7c5);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-weight: 900;
