@@ -47,7 +47,6 @@
     font-display: swap;
 }
 
-
 .Meddon-regular {
   font-family: "Meddon", cursive;
   font-weight: 400;
@@ -80,7 +79,6 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    
     position: relative; /* 패턴을 위에 얹기 위한 기준점 */
 }
 
@@ -238,12 +236,10 @@ body::before {
     width: 100%;
     margin-top: 20px;       /* 위쪽 메뉴랑 간격 띄우기 */
     padding: 15px;
-    
     /* 배너 디자인 (발레코어 핑크 리본 느낌) */
     background-color: transparent; /* 핑크색 배경 */
     color: var(--point-pink);                        /* 흰색 글씨 */
     border: none;
-    border-radius: 15px;                 /* 둥근 모서리 */
     cursor: pointer;
     transition: 0.3s;
     display: flex;
@@ -258,9 +254,9 @@ body::before {
 
 /* 자컾 배너 안의 아이콘 설정 */
 .banner-icon {
-    width: 40px;      /* 아이콘 크기 적당하게 */
+    width: 45px;      /* 아이콘 크기 적당하게 */
     height: auto;
-    margin-right: 10px; /* 글씨랑 간격 */
+    margin-right: 8px; /* 글씨랑 간격 */
 }
 
 /* 2. 프로필 (왕 크니까 왕 귀엽다) */
@@ -289,7 +285,7 @@ body::before {
     font-family: 'NixgonFont', sans-serif;
     display: grid;
     grid-template-columns: 1fr 1fr; /* 1:1 비율로 2칸 나눔 */
-    gap: 15px;             /* 버튼 사이 간격 */
+    gap: 12px;             /* 버튼 사이 간격 */
     width: 100%;
 }
 
