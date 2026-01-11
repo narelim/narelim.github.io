@@ -1,13 +1,25 @@
- /* 1. 기본 설정 */
+ /* =========================================
+   🎀 발레코어 테마 (Balletcore Theme)
+   ========================================= */
+:root {
+    --bg-color: #fdfbf7;       /* 따뜻한 크림색 배경 */
+    --window-bg: #ffffff;      /* 윈도우 창은 깨끗한 흰색 */
+    --sidebar-border: #f2e9e4; /* 연한 베이지 테두리 */
+    --text-main: #5d4037;      /* 부드러운 코코아색 글씨 (검정X) */
+    --point-pink: #ffb7c5;     /* 발레 슈즈 같은 핑크 */
+    --hover-bg: #fff0f3;       /* 마우스 올렸을 때 연한 핑크 */
+}
+
+/* 1. 기본 설정 */
     * { box-sizing: border-box; }
     body {
     margin: 0;
     /* 몽환적인 그라데이션 배경 */
-    background: radial-gradient(at 0% 0%, #f6f0fd 0px, transparent 50%),
-                radial-gradient(at 90% 0%, #e0c3fc 0px, transparent 50%),
-                radial-gradient(at 10% 90%, #dbe4ff 0px, transparent 50%),
-                radial-gradient(at 90% 90%, #ffdee9 0px, transparent 50%),
-                #f3f4f6; /* 기본 바탕색 */
+    background: radial-gradient(at 0% 0%, #fdfbf7 0px, transparent 50%),
+                radial-gradient(at 90% 0%, #f2e9e4 0px, transparent 50%),
+                radial-gradient(at 10% 90%, #ffb7c5 0px, transparent 50%),
+                radial-gradient(at 90% 90%, #fff0f3 0px, transparent 50%),
+                #frfbf7; /* 기본 바탕색 */
     background-size: 200% 200%; /* 움직이는 효과를 위해 크게 */
     animation: gradientMove 15s ease infinite; /* 배경이 살살 움직임 */
     
@@ -51,7 +63,7 @@
 
 /* 1. 사이드바: 투명하고 좁게 */
 .sidebar {
-    width: 110px;          /* 폭을 좁혀서 아이콘 위주로 */
+    width: 220px;          /* 폭을 좁혀서 아이콘 위주로 */
     background-color: transparent; /* 배경 투명하게! (회색 제거) */
     border-right: 2px dashed #d1d5db; /* 점선 테두리로 다꾸 느낌 */
     display: flex;
@@ -62,44 +74,48 @@
 
 /* 2. 버튼: 박스 없애고 아이콘만 남기기 */
 .nav-btn {
-    width: 80px;           /* 정사각형에 가깝게 */
-    height: 80px;
-    background: transparent; /* 버튼 배경 투명! */
-    border: none;          /* 테두리 제거 */
+    width: 100%;           /* 그리드 칸에 꽉 차게 */
+    aspect-ratio: 1/1;     /* 정사각형 비율 유지 */
+    height: auto;          /* 높이 자동 */
+    background: white;     /* 흰색 배경 */
+    border: 1px solid var(--sidebar-border); /* 연한 테두리 */
+    border-radius: 18px;
+    color: var(--text-main);
     display: flex;
-    flex-direction: column; /* 아이콘 위, 글자 아래 */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    margin-bottom: 15px;
-    border-radius: 20px;
-    color: #333;           /* 아이콘 색상 (진한 회색) */
     transition: 0.3s;
+    perspective: 1000px;   /* 3D 회전 준비 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
 }
 
-/* 마우스 올렸을 때 배경 살짝 */
 .nav-btn:hover {
-    background-color: rgba(0,0,0,0.05); /* 아주 연한 회색 */
+    background-color: var(--hover-bg); /* 연한 핑크 배경 */
+    border-color: var(--point-pink);   /* 진한 핑크 테두리 */
+    transform: translateY(-3px);       /* 살짝 떠오름 */
 }
 
-/* 클릭된 버튼 (활성화) */
+/* 활성화 상태 */
 .nav-btn.active {
-    background-color: transparent;
-    color: #5c7cfa; /* 포인트 색상 (파랑/보라 등) */
-    font-weight: bold;
+    background-color: var(--point-pink);
+    color: white;
+    border-color: var(--point-pink);
+    box-shadow: 0 4px 12px rgba(255, 183, 197, 0.4);
 }
 
 /* 3. ✨ 아이콘 스타일 (크게! 빙글빙글!) ✨ */
 .nav-icon {
-    font-size: 2.2rem;     /* 아이콘 크기 3배 확대 */
-    margin-bottom: 5px;    /* 글자랑 간격 */
-    transition: transform 0.5s ease-in-out; /* 회전 애니메이션 */
-    display: block;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 /* 마우스 올리면 아이콘만 360도 회전 */
+/* 팽이 회전 효과 유지 */
 .nav-btn:hover .nav-icon {
-    transform: rotate(360deg) scale(1.1); 
+    transform: rotateY(360deg);
 }
 
 /* 4. 글자 스타일 (작고 귀엽게) */
@@ -117,30 +133,44 @@
     /* border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; */
 }
 
+.cloud-box {
+    background: white;
+    padding: 20px;
+    border: 2px solid #333; /* 손그림 느낌 테두리 */
+    /* 찌그러진 원 모양 만들기 */
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+}
 
 
+/* 2. 프로필 (왕 크니까 왕 귀엽다) */
+.profile-mini {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    text-align: center;
+}
 
-    .profile-mini {
-        text-align: center;
-        margin-bottom: 30px;
-        padding-bottom: 20px;
-        border-bottom: 2px dashed #d1d5db;
-    }
-    
-    .profile-img {
-        width: 90px;        /* 너비 고정 */
-        height: 90px;       /* 높이 고정 */
-        border-radius: 50%; /* 동그라미 */
-        
-        /* ✨ 핵심 코드 추가 ✨ */
-        object-fit: cover;  /* 이미지가 찌그러지지 않고 꽉 차게 */
-        object-position: center; /* 이미지 중앙을 보여줌 */
-        
-        /* 기타 꾸밈 효과 (선택) */
-        border: 3px solid white;
-    }
+.profile-img {
+    width: 100px;           /* 40px -> 100px 로 대폭 확대! */
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    box-shadow: 0 4px 15px rgba(255, 183, 197, 0.3); /* 핑크 그림자 */
+    margin-bottom: 10px;
+}
 
+.user-name { font-size: 1.2rem; font-weight: bold; color: var(--text-main); }
+.user-id { font-size: 0.8rem; color: #9ca3af; }
 
+.menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 1:1 비율로 2칸 나눔 */
+    gap: 15px;             /* 버튼 사이 간격 */
+    width: 100%;
+}
 
     /* 4. 콘텐츠 영역 */
     .content-area {
@@ -250,37 +280,26 @@
         box-shadow: none; /* 그림자도 제거해서 평평하게 */
     }
 
-
-/* 5. 모바일 대응 (모바일엔 다시 가로로) */
-@media (max-width: 920px) {
     .sidebar {
         width: 100%;
         height: auto;
         border-right: none;
         border-bottom: 2px dashed #ddd;
     }
+    
+    .menu-grid {
+        display: flex;       /* 그리드 끄고 플렉스로 */
+        overflow-x: auto;    /* 가로 스크롤 */
+        gap: 10px;
+    }
+    
     .nav-btn {
-        width: auto;
-        height: auto;
-        margin: 0 10px;
-        padding: 10px;
+        width: auto; height: auto;
+        padding: 10px 15px;
+        flex-shrink: 0;
     }
     .nav-icon { font-size: 1.5rem; margin-bottom: 0; margin-right:5px; }
     .nav-btn:hover .nav-icon { transform: none; } /* 모바일은 회전 끄기 */
-}
-
-.cloud-box {
-    background: white;
-    padding: 20px;
-    border: 2px solid #333; /* 손그림 느낌 테두리 */
-    /* 찌그러진 원 모양 만들기 */
-    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-    box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
-}
-
-
-
-/* @media (max-width: 920px) 블럭 안쪽에 넣어야 합니다 */
 
     /* 1. 프로필 영역 다시 보이게 설정 */
     .profile-mini {
@@ -311,8 +330,6 @@
         font-size: 0.75rem;
         display: none; /* 아이디까지 나오면 너무 기니까 숨김 (원하면 이 줄 삭제) */
     }
-
-    
     
     .content-area { 
         padding: 20px; 
