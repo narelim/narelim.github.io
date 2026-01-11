@@ -162,13 +162,12 @@ body::before {
 
 /* 2. 버튼: 박스 없애고 아이콘만 남기기 */
 .nav-btn {
-    width: 100%;           /* 그리드 칸에 꽉 차게 */
+    width: 90%;           /* 그리드 칸에 꽉 차게 */
     aspect-ratio: 1/1;     /* 정사각형 비율 유지 */
     height: auto;          /* 높이 자동 */
     background: transparent; /* 👈 배경 투명하게! (흰색 제거) */
     border: none;            /* 👈 테두리 제거! */
     box-shadow: none;        /* 👈 그림자 제거! */
-    border-radius: 18px;
     color: var(--text-main);
     display: flex;
     flex-direction: column;
