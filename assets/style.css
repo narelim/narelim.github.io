@@ -375,17 +375,26 @@ body::before {
     
     .card-title { font-family: 'ImHyeMin'; font-size: 1.2rem; font-weight: bold; margin-bottom: 5px; }
     .card-desc { font-family: 'ImHyeMin'; font-size: 0.85rem; line-height: 1.4; }
-    /* 카드 뒷면 글씨 꾸미기 */
-.flip-card-back .card-title,
-.flip-card-back .card-desc {
-    /* 1. 글씨 색상: 아주 진한 회갈색 (완전 검정보다 자연스러움) */
-    color: #3e2723; 
-    
-    /* 2. ✨ 핵심 마법: 곱하기(Multiply) 모드 ✨ */
-    mix-blend-mode: multiply;
-    
-    /* 3. 투명도 조절: 배경이 살짝 비치게 해서 더 자연스럽게 */
-    opacity: 0.8; 
+
+/* ---------------------------------------------------
+   카드 글씨 색상 옵션 (2가지)
+--------------------------------------------------- */
+
+/* 1. ☀️ 밝은 배경용 (글씨가 어둡게 나옴 + 곱하기 효과) */
+.txt-dark .card-title,
+.txt-dark .card-desc {
+    color: #3e2723;          /* 진한 갈색 */
+    mix-blend-mode: multiply; /* 배경과 자연스럽게 섞임 */
+    opacity: 0.9;
+}
+
+/* 2. 🌙 어두운 배경용 (글씨가 하얗게 나옴 + 그림자) */
+.txt-white .card-title,
+.txt-white .card-desc {
+    color: #ffffff;          /* 흰색 */
+    mix-blend-mode: normal;  /* 섞임 효과 끄기 (흰색은 섞으면 투명해져요!) */
+    opacity: 1;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4); /* 배경이 어두우니까 그림자로 눈에 띄게 */
 }
 
 
