@@ -19,6 +19,44 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'HsSantoki';
+    src: url('https://gcore.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/HS-Regular.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SchoolSafeUniverse';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ImHyeMin';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/IM_Hyemin-Regular.woff2') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ImHyeMin';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/IM_Hyemin-Bold.woff2') format('woff');
+    font-weight: 700;
+    font-display: swap;
+}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Meddon&display=swap" rel="stylesheet">
+.meddon-regular {
+  font-family: "Meddon", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
  /* =========================================
    🎀 발레코어 테마 (Balletcore Theme)
    ========================================= */
@@ -169,6 +207,7 @@ body::before {
     border-radius: 20px; /* 기본 둥근 모서리 */
     /* 만약 스케치처럼 울퉁불퉁하게 하고 싶다면 아래 주석 해제 */
     /* border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; */
+    font-family: 'SchoolSafeUniverse';
 }
 
 .cloud-box {
@@ -194,7 +233,7 @@ body::before {
     border: none;
     border-radius: 15px;                 /* 둥근 모서리 */
     
-    font-family: 'Pretendard', serif;    /* 분위기 있는 폰트 */
+    font-family: "Meddon", cursive    /* 분위기 있는 폰트 */
     cursor: pointer;
     transition: 0.3s;
     display: flex;
@@ -232,6 +271,7 @@ body::before {
 .user-id { font-size: 0.8rem; color: #9ca3af; }
 
 .menu-grid {
+    font-family: 'NixgonFont', sans-serif;
     display: grid;
     grid-template-columns: 1fr 1fr; /* 1:1 비율로 2칸 나눔 */
     gap: 15px;             /* 버튼 사이 간격 */
@@ -251,6 +291,7 @@ body::before {
     @keyframes fadeIn { from{opacity:0; transform:translateY(5px);} to{opacity:1; transform:translateY(0);} }
 
     .section-title {
+        font-family: 'HsSantoki';
         font-size: 1.8rem; font-weight: 800; margin-bottom: 25px; color: #333;
         border-left: 5px solid #5c7cfa; padding-left: 15px;
     }
@@ -319,8 +360,8 @@ body::before {
         box-sizing: border-box;
     }
     
-    .card-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 5px; }
-    .card-desc { font-size: 0.85rem; color: #ccc; line-height: 1.4; }
+    .card-title { font-family: 'ImHyeMin'; font-size: 1.2rem; font-weight: bold; margin-bottom: 5px; }
+    .card-desc { font-family: 'ImHyeMin'; font-size: 0.85rem; color: #ccc; line-height: 1.4; }
 
     /* 모바일 대응 */
 /* 👇 기존 700px를 920px 정도로 늘려서 가로 모드도 포함시킵니다 */
