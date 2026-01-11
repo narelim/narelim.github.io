@@ -53,7 +53,6 @@
 .Meddon-regular {
   font-family: 'Meddon', cursive;
   font-weight: 400;
-  font-style: normal;
 }
 
 
@@ -247,7 +246,7 @@ body::before {
     border: none;
     border-radius: 15px;                 /* 둥근 모서리 */
     
-    font-family: 'meddon', cursive;    /* 분위기 있는 폰트 */
+    font-family: 'meddon-regular', cursive;    /* 분위기 있는 폰트 */
     font-weight: 400;
     cursor: pointer;
     transition: 0.3s;
