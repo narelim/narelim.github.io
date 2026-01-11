@@ -49,14 +49,72 @@
     }
 
 
-    .sidebar {
-    width: 220px;
-    background-color: transparent; /* 배경 투명하게 */
-    padding: 30px 20px;
-    border-right: 1px solid rgba(255, 255, 255, 0.4); /* 연한 구분선 */
+/* 1. 사이드바: 투명하고 좁게 */
+.sidebar {
+    width: 110px;          /* 폭을 좁혀서 아이콘 위주로 */
+    background-color: transparent; /* 배경 투명하게! (회색 제거) */
+    border-right: 2px dashed #d1d5db; /* 점선 테두리로 다꾸 느낌 */
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    align-items: center;   /* 가운데 정렬 */
+    padding: 30px 10px;
+}
+
+/* 2. 버튼: 박스 없애고 아이콘만 남기기 */
+.nav-btn {
+    width: 80px;           /* 정사각형에 가깝게 */
+    height: 80px;
+    background: transparent; /* 버튼 배경 투명! */
+    border: none;          /* 테두리 제거 */
+    display: flex;
+    flex-direction: column; /* 아이콘 위, 글자 아래 */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 15px;
+    border-radius: 20px;
+    color: #333;           /* 아이콘 색상 (진한 회색) */
+    transition: 0.3s;
+}
+
+/* 마우스 올렸을 때 배경 살짝 */
+.nav-btn:hover {
+    background-color: rgba(0,0,0,0.05); /* 아주 연한 회색 */
+}
+
+/* 클릭된 버튼 (활성화) */
+.nav-btn.active {
+    background-color: transparent;
+    color: #5c7cfa; /* 포인트 색상 (파랑/보라 등) */
+    font-weight: bold;
+}
+
+/* 3. ✨ 아이콘 스타일 (크게! 빙글빙글!) ✨ */
+.nav-icon {
+    font-size: 2.2rem;     /* 아이콘 크기 3배 확대 */
+    margin-bottom: 5px;    /* 글자랑 간격 */
+    transition: transform 0.5s ease-in-out; /* 회전 애니메이션 */
+    display: block;
+}
+
+/* 마우스 올리면 아이콘만 360도 회전 */
+.nav-btn:hover .nav-icon {
+    transform: rotate(360deg) scale(1.1); 
+}
+
+/* 4. 글자 스타일 (작고 귀엽게) */
+.nav-text {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    font-family: 'Pretendard', sans-serif;
+}
+
+/* (옵션) 그려주신 구름 모양 박스 테두리 */
+.content-area {
+    /* 기존 설정 유지하되, 테두리만 변경 */
+    border-radius: 20px; /* 기본 둥근 모서리 */
+    /* 만약 스케치처럼 울퉁불퉁하게 하고 싶다면 아래 주석 해제 */
+    /* border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; */
 }
 
 
@@ -192,54 +250,6 @@
         box-shadow: none; /* 그림자도 제거해서 평평하게 */
     }
 
-    /* 1. 사이드바 스타일 변경 */
-.sidebar {
-    width: 100px; /* 아이콘 위주라 폭을 좀 좁혀도 예뻐요 */
-    align-items: center; /* 가운데 정렬 */
-    background-color: transparent; /* 배경 투명하게 (선택사항) */
-    border-right: 2px dashed #ddd; /* 점선으로 다꾸 느낌 내기 */
-}
-
-/* 2. 버튼 스타일 (아이콘 중심) */
-.nav-btn {
-    flex-direction: column; /* 아이콘 위, 글자 아래 */
-    justify-content: center;
-    background: transparent; /* 배경 없애기 */
-    width: 70px;
-    height: 70px;
-    margin-bottom: 15px;
-    border-radius: 15px; /* 둥글둥글 */
-}
-
-.nav-btn:hover {
-    background-color: #f0f0f0; /* 마우스 올리면 살짝 회색 */
-}
-
-.nav-btn.active {
-    background-color: transparent; /* 활성화돼도 배경 색 없이 */
-    color: #5c7cfa; /* 아이콘 색만 바뀌게 */
-    box-shadow: none;
-}
-
-/* 3. ✨ 아이콘 빙글빙글 회전 효과 (핵심!) ✨ */
-.nav-icon {
-    font-size: 2rem; /* 아이콘 크기 키움 */
-    margin-bottom: 5px;
-    transition: transform 0.5s ease-in-out; /* 0.5초 동안 부드럽게 */
-    display: inline-block;
-}
-
-/* 마우스 올리면(.nav-btn:hover) 아이콘(.nav-icon)이 360도 돔 */
-.nav-btn:hover .nav-icon {
-    transform: rotate(360deg); 
-}
-
-/* 4. 글자 스타일 (작게) */
-.nav-text {
-    font-size: 0.7rem;
-    font-weight: bold;
-    font-family: 'Pretendard', cursive; /* 손글씨 폰트 있으면 적용 가능 */
-}
 
 /* 5. 모바일 대응 (모바일엔 다시 가로로) */
 @media (max-width: 920px) {
@@ -386,6 +396,7 @@
             display: block;
             text-align: center;
         }
+        }
         
             /* 1. 4각 반짝이 별 (CSS clip-path로 그림) */
     .sparkle-star {
@@ -413,6 +424,4 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-weight: 900;
-    }
-
     }
