@@ -432,18 +432,46 @@ body::before {
         border-bottom: 2px dashed #ddd;
     }
     
+/* 모바일 화면 설정 부분 */
+@media (max-width: 920px) {
+    
+    /* 1. 메뉴통(Grid) 설정: 똑같이 나누기 */
     .menu-grid {
-        display: flex;       /* 그리드 끄고 플렉스로 */
-        overflow-x: auto;    /* 가로 스크롤 */
-        gap: 10px;
+        display: grid;
+        
+        /* 👇 핵심! 화면을 4조각으로 똑같이 나눔 (버튼이 5개면 숫자 4를 5로 바꾸세요!) */
+        grid-template-columns: repeat(4, 1fr); 
+        
+        gap: 5px; /* 버튼 사이 간격 좁게 */
+        width: 100%;
+        overflow-x: hidden; /* 스크롤 없애기 */
+        padding: 0 10px; /* 양옆에 살짝 여유 */
+    }
+
+    /* 2. 버튼 설정: 꽉 채우기 */
+    .nav-btn {
+        width: 100%;       /* 자기 구역 꽉 채우기 */
+        padding: 10px 0;   /* 양옆 패딩을 없애고 위아래만 줌 (좁은 공간 활용) */
+        margin: 0;         /* 마진 제거 */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* 3. 아이콘 위치 보정 */
+    .nav-icon {
+        margin-right: 0;   /* 모바일에서 오른쪽 여백 제거 */
+        margin-bottom: 5px; /* 아이콘과 글자 사이 간격 */
+        font-size: 1.5rem;  /* 아이콘 크기 */
     }
     
-    .nav-btn {
-        width: auto; height: auto;
-        padding: 10px 15px;
-        flex-shrink: 0;
+    /* 4. 긴 글자(YUMESHIP)가 줄바꿈 안 되게 하거나, 폰트 줄이기 */
+    .nav-text {
+        font-size: 0.7rem; /* 글씨 크기 살짝 줄임 */
+        white-space: nowrap; /* 줄바꿈 금지 */
     }
-    .nav-icon { font-size: 1.5rem; margin-bottom: 0; margin-right:5px; }
+}
     .nav-btn:hover .nav-icon { transform: none; } /* 모바일은 회전 끄기 */
 
     /* 1. 프로필 영역 다시 보이게 설정 */
